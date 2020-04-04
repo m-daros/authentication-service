@@ -16,6 +16,8 @@
     </properties>
 
     <dependencies>
+
+        <!-- Dependencies for BDD Testing with Cucumber ( https://cucumber.io/ ) -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -37,12 +39,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JUnit dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
