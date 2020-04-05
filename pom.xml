@@ -19,6 +19,12 @@
     <properties>
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
         <cucumber.version>5.6.0</cucumber.version>
+
+        <!-- N.B. La versione 4.3.0 da problemi -->
+<!--    <rest.assured.version>4.3.0</rest.assured.version>-->
+
+        <rest.assured.version>4.2.0</rest.assured.version>
+
         <junit.version>4.13</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -73,6 +79,35 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Rest Assured dependencies -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest.assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${rest.assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${rest.assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>xml-path</artifactId>
+            <version>${rest.assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- JUnit dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -95,6 +130,13 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <!-- Spring Boot maven plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
         </plugins>
+
     </build>
 </project>
