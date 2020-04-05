@@ -7,10 +7,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 public class AuthenticationController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger ( AuthenticationController.class );
+
+	private Map<String, String> registeredUsers;
+
+	public AuthenticationController () {
+
+		registeredUsers = new HashMap<> ();
+		registeredUsers.put ( "pippo", "pippo-pwd" );
+	}
 
 	@RequestMapping ( path = "/login", method = RequestMethod.GET )
 	@ResponseBody
@@ -18,6 +29,15 @@ public class AuthenticationController {
 
 		LOGGER.info ( "Required login with username: {} and password: {}", username, password );
 
-		return new ResponseEntity<AuthenticationResponse> ( new AuthenticationResponse ( "Logged" ), HttpStatus.OK );
+		String userPassword = registeredUsers.get ( username );
+
+		if ( null != userPassword && userPassword.equals ( password ) ) {
+
+			return new ResponseEntity<AuthenticationResponse> ( new AuthenticationResponse ( "Logged" ), HttpStatus.OK );
+		}
+		else {
+
+			return new ResponseEntity<AuthenticationResponse> ( new AuthenticationResponse ( "Not logged" ), HttpStatus.OK );
+		}
 	}
 }
