@@ -41,15 +41,15 @@ public class StepDefinitions extends AbstractSpringIntegrationTest {
 	public void i_login_with_username_and_password ( String username, String password ) {
 
 		answer = given ()
-				.param ( "username", username )
-				.param ( "password", password )
+					.param ( "username", username )
+					.param ( "password", password )
 				.when ()
-				.get ( "/login" )
+					.get ( "/login" )
 				.then ()
-				.statusCode ( 200 )
-				.contentType ( JSON )
+					.statusCode ( 200 )
+					.contentType ( JSON )
 				.extract ()
-				.path ( "status" );
+					.path ( "status" );
 	}
 
 	@Then ( "the application says {string}" )

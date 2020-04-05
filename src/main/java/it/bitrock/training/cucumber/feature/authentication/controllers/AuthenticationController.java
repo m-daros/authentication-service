@@ -21,6 +21,7 @@ public class AuthenticationController {
 
 		registeredUsers = new HashMap<> ();
 		registeredUsers.put ( "pippo", "pippo-pwd" );
+		registeredUsers.put ( "pluto", "pluto-pwd" );
 	}
 
 	@RequestMapping ( path = "/login", method = RequestMethod.GET )
@@ -37,7 +38,7 @@ public class AuthenticationController {
 		}
 		else {
 
-			return new ResponseEntity<AuthenticationResponse> ( new AuthenticationResponse ( "Not logged" ), HttpStatus.OK );
+			return new ResponseEntity<AuthenticationResponse> ( new AuthenticationResponse ( "Unable to login" ), HttpStatus.OK );
 		}
 	}
 }
