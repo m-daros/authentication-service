@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.junit.Before;
 
 import static io.restassured.RestAssured.given;
@@ -14,9 +15,9 @@ import static org.junit.Assert.assertEquals;
 
 public class StepDefinitions extends AbstractSpringIntegrationTest {
 
-	private String registeredUsername;
-	private String registeredPassword;
-	private String answer;
+	private String   registeredUsername;
+	private String   registeredPassword;
+	private Response loginResponse;
 
 	@Before
 	public void setup () {
@@ -40,20 +41,22 @@ public class StepDefinitions extends AbstractSpringIntegrationTest {
 	@When ( "I login with username {string} and password {string}" )
 	public void i_login_with_username_and_password ( String username, String password ) {
 
-		answer = given ()
+		loginResponse =
+				given ()
 					.param ( "username", username )
 					.param ( "password", password )
 				.when ()
-					.get ( "/login" )
-				.then ()
-					.statusCode ( 200 )
-					.contentType ( JSON )
-				.extract ()
-					.path ( "status" );
+					.get ( "/login" );
 	}
 
 	@Then ( "the application says {string}" )
 	public void the_application_says ( String expectedAnswer ) {
+
+		String answer = loginResponse.then ()
+				.statusCode ( 200 )
+				.contentType ( JSON )
+				.extract ()
+				.path ( "status" );
 
 		assertEquals ( expectedAnswer, answer );
 	}
