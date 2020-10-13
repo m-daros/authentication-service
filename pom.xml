@@ -18,7 +18,7 @@
 
         <rest.assured.version>4.2.0</rest.assured.version>
 
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
